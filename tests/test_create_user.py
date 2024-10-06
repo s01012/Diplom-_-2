@@ -53,12 +53,12 @@ class TestCreateUser:
                 and response_body.get('message')) == 'Email, password and name are required fields'
 
     @classmethod
-    def tear_down(cls):
+    def teardown_class(cls):
         cls.payload = {
             'email': cls.dict_registration.get('email'),
             'password': cls.dict_registration.get('password'),
-            'name': cls.dict_registration.get('name')
         }
-        response = requests.delete(f'{GetUrl.URL}{Endpoint.CREATE_USER}', data=cls.payload)
+        response = requests.post(f'{GetUrl.URL}{Endpoint.LOGIN_USER}', data=cls.payload)
         response_body = response.json()
-        requests.delete(f'{GetUrl.URL}{Endpoint.CREATE_USER}', headers={'Authorization': f'{response_body.get("accessToken")}'})
+        requests.delete(f'{GetUrl.URL}{Endpoint.DELETE_USER}',
+                        headers={'Authorization': f'{response_body.get("accessToken")}'})
