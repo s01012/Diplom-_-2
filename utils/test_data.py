@@ -1,5 +1,8 @@
 import random
+import requests
 from datetime import datetime
+
+print('ddsdsdsd')
 
 
 def generator():
@@ -12,3 +15,11 @@ def generator():
     }
     return dict_registration
 
+
+exact_ingredients = {
+    'ingredients': ['61c0c5a71d1f82001bdaaa71', '61c0c5a71d1f82001bdaaa70', '61c0c5a71d1f82001bdaaa72']
+}
+
+not_exact_ingredients = {
+    'ingredients': ['61c0c5adsdd71d1f82001bdaaa7f', '5fc0c5a71d1f8dsddd2001bdaaa73', '61c0c5a71d1f8200dsdsd1bdaab99']
+}
