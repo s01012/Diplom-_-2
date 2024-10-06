@@ -38,3 +38,15 @@ class TestGettingOrder:
         response_body_getting_order = response_getting_order.json()
         assert (response_getting_order.status_code == 401
                 and response_body_getting_order.get('message') == 'You should be authorised')
+
+    @classmethod
+    def teardown_class(cls):
+        cls.payload = {
+            'email': cls.dict_registration.get('email'),
+            'password': cls.dict_registration.get('password'),
+        }
+        response = requests.post(f'{GetUrl.URL}{Endpoint.LOGIN_USER}', data=cls.payload)
+        response_body = response.json()
+        requests.delete(f'{GetUrl.URL}{Endpoint.DELETE_USER}',
+                        headers={'Authorization': f'{response_body.get("accessToken")}'})
+
