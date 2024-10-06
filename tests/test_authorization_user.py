@@ -40,6 +40,7 @@ class TestAuthorizationUser:
         response_body = response.json()
         assert (response.status_code == 401 and response_body.get('success') == False
                 and response_body.get('message')) == 'email or password are incorrect'
+
     @classmethod
     def teardown_class(cls):
         cls.payload = {
